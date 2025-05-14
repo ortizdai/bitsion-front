@@ -46,7 +46,7 @@ export default function NewClientForm({ params }) {
         { name: "identification", label: "Identification", placeholder: 12345678 },
         { name: "age", label: "Age", placeholder: 35 },
         { name: "gender", label: "Gender", placeholder: "Masculino" },
-        { name: "state", label: "State", placeholder: "Activoss" },
+        { name: "state", label: "State", placeholder: "Activo" },
 
     ];
 
