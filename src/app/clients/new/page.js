@@ -79,8 +79,8 @@ export default function NewClientForm({ params }) {
         <div className="flex flex-col gap-6 max-w-2xl mx-auto mt-20">
             <Card>
                 <CardHeader>
-                    <CardTitle>New Client</CardTitle>
-                    <CardDescription>Fill out the form to add a new client.</CardDescription>
+                    <CardTitle>New Customer</CardTitle>
+                    <CardDescription>Fill out the form to add a new customer.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
@@ -118,12 +118,12 @@ export default function NewClientForm({ params }) {
                                 )}
                             </div>
                         ))}
-                        <Button type="submit" className="w-full" >New Client</Button>
+                        <Button type="submit" className="w-full" >New Customer</Button>
                     </form>
                 </CardContent>
             </Card>
             <Button type="button" onClick={() => window.history.back()}>
-                Volver
+                Back
             </Button>
         </div>
     )

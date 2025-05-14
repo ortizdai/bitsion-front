@@ -53,8 +53,8 @@ export default function HeaderClient() {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50 transition-opacity">
           <div className="bg-white text-black p-6 rounded-xl shadow-lg w-96 transform transition-all duration-300 scale-100 opacity-100">
-            <h2 className="text-xl font-semibold mb-4">¿Cerrar sesión?</h2>
-            <p className="mb-6">¿Estás segura de que querés cerrar sesión?</p>
+            <h2 className="text-xl font-semibold mb-4">¿Log out?</h2>
+            <p className="mb-6">¿Are you sure you want to log out?</p>
             <div className="flex justify-end gap-4">
               <button
                 onClick={() => setShowModal(false)}
@@ -66,7 +66,7 @@ export default function HeaderClient() {
                 onClick={handleLogout}
                 className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition"
               >
-                logout
+                Yes
               </button>
             </div>
           </div>

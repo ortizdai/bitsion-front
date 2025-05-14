@@ -42,7 +42,7 @@ export default function NewClientForm({ params }) {
     const router = useRouter();
 
     const defaultFields = [
-        { name: "username", label: "userame", placeholder: "JuanPérez" },
+        { name: "username", label: "username", placeholder: "JuanPérez" },
         { name: "full_name", label: "full name", placeholder: "Juan Perez" },
         { name: "email", label: "email", placeholder: "juanperez@example" },
         { name: "password", label: "password", placeholder: "Password must be at least 8 characters long" },
@@ -107,7 +107,7 @@ export default function NewClientForm({ params }) {
                 </CardContent>
             </Card>
             <Button type="button" onClick={() => window.history.back()}>
-                Volver
+                Back
             </Button>
         </div>
     )

@@ -78,18 +78,18 @@ export default function Page() {
     return (
         <div className="max-w-4xl mx-auto px-8 py-6 mt-40 bg-black text-white rounded-lg shadow-md">
             <div className="flex items-center justify-between mb-10">
-                <h1 className="text-3xl font-bold">A List of Your Clients</h1>
+                <h1 className="text-3xl font-bold">Customer list</h1>
                 <Link
                     href="/clients/new"
                     className="bg-blue-600 text-white px-2 py-2 rounded hover:bg-blue-700 transition"
                 >
-                    + Add client
+                    + Add customer
                 </Link>
             </div>
             {showModal && (
-                <div className="fixed right-120 flex justify-center items-center w-96 bg-black bg-opacity-50 z-50">
+                <div className="fixed right-190 flex justify-center items-center w-96 bg-black bg-opacity-50 z-50">
                     <div className="bg-black p-6 rounded-lg shadow-lg">
-                        <p className="text-lg">¿Estás seguro de que quieres eliminar este cliente?</p>
+                        <p className="text-lg">¿Are you sure you want to delete this customer?</p>
                         <div className="mt-4">
                             <button
                                 className="bg-red-600 text-white px-4 py-2 rounded mr-4"
@@ -110,10 +110,10 @@ export default function Page() {
             <Table className={"bg-white text-black rounded-lg"}>
                 <TableHeader>
                     <TableRow>
-                        <TableHead className="w-1/4 px-4 py-2">Identificación</TableHead>
-                        <TableHead className="w-1/4">Nombre</TableHead>
-                        <TableHead className="w-1/4">Estado</TableHead>
-                        <TableHead className="w-1/4">Acciones</TableHead>
+                        <TableHead className="w-1/4 px-4 py-2">Identification</TableHead>
+                        <TableHead className="w-1/4">Name</TableHead>
+                        <TableHead className="w-1/4">State</TableHead>
+                        <TableHead className="w-1/4">Actions</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>

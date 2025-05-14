@@ -169,8 +169,8 @@ export default function NewClientForm({ params }) {
         <div className="flex flex-col gap-6 max-w-2xl mx-auto mt-20">
             <Card>
                 <CardHeader>
-                    <CardTitle>Update Client</CardTitle>
-                    <CardDescription>Fill out the form to add a new client.</CardDescription>
+                    <CardTitle>Update Customer</CardTitle>
+                    <CardDescription>Fill out the form to add a new customer.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleClientSubmit(onSubmitClient)} className="flex flex-col gap-6">
@@ -190,7 +190,7 @@ export default function NewClientForm({ params }) {
                                 )}
                             </div>
                         ))}
-                        <Button type="submit" className="w-full" >Update Client</Button>
+                        <Button type="submit" className="w-full" >Update Customer</Button>
                     </form>
                 </CardContent>
             </Card>
@@ -226,7 +226,7 @@ export default function NewClientForm({ params }) {
                         ))}
                         <div className="flex gap-4 items-end">
                             <div className="flex-1">
-                                <Label htmlFor="newAttr.name">Nuevo atributo</Label>
+                                <Label htmlFor="newAttr.name">New attribute</Label>
                                 <Input
                                     id="newAttr.name"
                                     placeholder="Clave"
@@ -235,7 +235,7 @@ export default function NewClientForm({ params }) {
                                 />
                             </div>
                             <div className="flex-1">
-                                <Label htmlFor="newAttr.value">Valor</Label>
+                                <Label htmlFor="newAttr.value">Value</Label>
                                 <Input
                                     id="newAttr.value"
                                     placeholder="Valor"
@@ -254,7 +254,7 @@ export default function NewClientForm({ params }) {
                 </CardContent>
             </Card>
             <Button type="button" onClick={() => router.push('/clients')}>
-                Volver
+                Back
             </Button>
         </div>
     )
