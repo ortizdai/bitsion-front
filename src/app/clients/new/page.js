@@ -87,7 +87,7 @@ export default function NewClientForm({ params }) {
                         {fields.map((field) => (
 
                             <div key={field.name} className="grid gap-3">
-                                <Label htmlFor={field.name}>{field.label} </Label> {console.log(field.label, "field.name")}
+                                <Label htmlFor={field.name}>{field.label} </Label>
                                 <Input
                                     id={field.name}
                                     placeholder={field.placeholder}
@@ -103,7 +103,7 @@ export default function NewClientForm({ params }) {
                         {attributes.map((attr) => (
 
                             <div key={attr.name} className="grid gap-3">
-                                <Label htmlFor={attr.name}>{attr.name} </Label> {console.log(attr.value, "attr.name")}
+                                <Label htmlFor={attr.name}>{attr.name} </Label>
                                 <Input
                                     id={attr.name}
                                     {...register(attr.name)}

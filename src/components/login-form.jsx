@@ -41,8 +41,6 @@ export function LoginForm({
       }
 
       const data = await res.json();
-      console.log("Login success:", data);
-
       router.push("/clients");
 
     } catch (err) {

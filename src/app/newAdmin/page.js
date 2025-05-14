@@ -51,7 +51,6 @@ export default function NewClientForm({ params }) {
     ];
 
     const [fields, setFields] = useState(defaultFields);
-    const [attributes, setAttributes] = useState([]);
     const [newAttr, setNewAttr] = useState({ name: '', value: '' });
     
     const { handleSubmit, register, formState, reset } = useForm({
@@ -72,7 +71,7 @@ export default function NewClientForm({ params }) {
             router.push(`/`);
 
         } catch (error) {
-            console.error(error);
+            throw new Error('Error creating client');
         }
     }
 
@@ -88,7 +87,7 @@ export default function NewClientForm({ params }) {
                         {fields.map((field) => (
 
                             <div key={field.name} className="grid gap-3">
-                                <Label htmlFor={field.name}>{field.label} </Label> {console.log(field.label, "field.name")}
+                                <Label htmlFor={field.name}>{field.label} </Label>
                                 <Input
                                     id={field.name}
                                     placeholder={field.placeholder}

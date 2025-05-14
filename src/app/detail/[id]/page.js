@@ -128,7 +128,6 @@ export default function NewClientForm({ params }) {
     }
     const handleDelete = async (id, e) => {
         e.stopPropagation();
-        console.log(id)
         try {
             const res = await fetch(`http://localhost:1234/attributes/${id}`, {
                 method: "DELETE",
