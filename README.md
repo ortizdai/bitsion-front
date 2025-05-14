@@ -16,18 +16,76 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## ✅ Vistas creadas en el frontend (`/app`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 1. Login (`/`)
+- Formulario de login con validación usando **React Hook Form + Zod**.
+- Envío de credenciales a la API (`/admin/login`) con `fetch` y `credentials: 'include'`.
+- Si el login es exitoso, redirige a `/clients`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
+
+### 2. Vista principal de clientes (`/clients`)
+- Muestra una lista de clientes obtenidos desde la API.
+- Link para agregar nuevo cliente.
+- Permite redirigir a la página para **actualizar un cliente**.
+- Permite **eliminar un cliente**.
+- Modal de confirmación antes de eliminar.
+
+---
+
+### 3. Crear nuevo cliente (`/clients/new`)
+- Formulario para crear un nuevo cliente.
+- Validaciones con Zod (`identification`, `email`, `full_name`).
+- Usa `POST http://localhost:1234/users`.
+
+---
+
+### 4. Creación de atributos personalizados (parte de `/clients/new`)
+- En la misma vista donde se crea un nuevo cliente se permite:
+  - Agregar atributos adicionales como campos dinámicos (ej: `cargo: gerente`, `edad: 40`).
+  - Usa un estado separado (`attributes`) para manejarlos.
+  - Los atributos nuevos se agregan con un botón que hace un `POST /attributes` y luego redirige a `/client/:id`.
+
+---
+
+### 5. Vista de detalle y edición del cliente (`/clients/[id]`)
+- Objetivo: mostrar los datos del cliente y permitir actualizarlos.
+
+#### Funcionalidades:
+- Hace un `fetch` por ID al backend para obtener los datos del cliente.
+- Completa el formulario con esos datos (`defaultValues`) usando React Hook Form.
+- Permite modificar los datos y hacer un `PATCH` para actualizarlos.
+- **Campos editables: Todos**.
+- También puede incluir la edición o carga de nuevos atributos personalizados.
+
+---
+
+### 6. Crear nuevo admin (`/newAdmin`)
+- Formulario dinámico con campos: `username`, `full_name`, `email`, `password`.
+- Validación con **Zod + React Hook Form**.
+- `password` es de tipo `"password"` y requiere mínimo 8 caracteres.
+- Envío de datos con `fetch` (`POST` a `/admin`).
+- Redirige al home al terminar.
+- Incluye botón “Back”.
+- Preparado para permitir atributos personalizados, aunque **no están implementados** en este código.
+
+---
+
+### 7. Header con navegación y logout
+- Links a: **Login**, **Clients** y botón para **Logout**.
+- Modal de confirmación antes de cerrar sesión.
+- Hace `POST /admin/logout` y redirige a `/`.
+
+---
+
+### 8. Manejo de rutas públicas/privadas
+- El layout es un **server component**, por lo tanto protege desde el lado del servidor.
+- Los formularios y navegación son **client components**.
+
 
 ## Deploy on Vercel
 
