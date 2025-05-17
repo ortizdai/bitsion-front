@@ -44,9 +44,6 @@ export default function HeaderClient() {
             <Link href="/" className="hover:underline">
               Login
             </Link>
-            <Link href="/clients" className="hover:underline">
-              Clients
-            </Link>
             <button onClick={() => setShowModal(true)} className="hover:underline">
               Logout
             </button>
