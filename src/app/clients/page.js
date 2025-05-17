@@ -25,19 +25,25 @@ import {
 export default function Page() {
     const router = useRouter();
     const [users, setUsers] = useState([]);
-    const [showModal, setShowModal] = useState(false); // Para mostrar el modal
-    const [userToDelete, setUserToDelete] = useState(null); // Para almacenar el usuario a eliminar
+    const [showModal, setShowModal] = useState(false);
+    const [userToDelete, setUserToDelete] = useState(null);
+    const [error, setError] = useState(null)
+
 
     const fetchUsers = async () => {
+        setError(null);
         try {
             const res = await fetch("http://localhost:1234/users", {
                 credentials: "include",
             });
+            if(res.status === 401){
+                throw new Error("Unauthorized");
+            }
             if (!res.ok) throw new Error("Failed to fetch users");
             const data = await res.json();
             setUsers(data);
         } catch (error) {
-            console.error(error);
+            setError(error.message);
         }
     };
 
@@ -56,6 +62,7 @@ export default function Page() {
     };
 
     const confirmDelete = async () => {
+        setError(null)
         try {
             const res = await fetch(`http://localhost:1234/users/${userToDelete}`, {
                 method: "DELETE",
@@ -66,8 +73,8 @@ export default function Page() {
             setUsers((prev) => prev.filter((user) => user.id !== userToDelete));
             setShowModal(false);
         } catch (err) {
-            console.error("Error deleting user", err);
             setShowModal(false);
+            setError(err.message);
         }
     };
 
@@ -117,7 +124,7 @@ export default function Page() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {users.map((user) => (
+                    { users.map((user) => (
                         <TableRow key={user.id} onClick={() => handleRowClick(user.id)} className="cursor-pointer hover:bg-gray-200">
                             <TableCell className="font-medium px-4 py-2">{user.identification}</TableCell>
                             <TableCell>{user.full_name}</TableCell>
@@ -141,7 +148,11 @@ export default function Page() {
                     ))}
                 </TableBody>
             </Table>
-
+            {error && (
+                <p className="mt-4 text-center text-sm text-red-500">
+                    {error}
+                </p>
+            )}
             <Pagination className="mt-120">
                 <PaginationContent>
                     <PaginationItem>

@@ -51,12 +51,14 @@ export default function NewClientForm({ params }) {
 
     const [fields, setFields] = useState(defaultFields);
     const [attributes, setAttributes] = useState([]);
+    const [error, setError] = useState(null)
     
     const { handleSubmit, register, formState, reset } = useForm({
         resolver: zodResolver(formSchema),
     })
 
     const onSubmit = async (values) => {
+        setError(null)
         try {
             const res = await fetch(`http://localhost:1234/users`, {
                 method: 'POST',
@@ -66,12 +68,15 @@ export default function NewClientForm({ params }) {
                 body: JSON.stringify(values),
                 credentials: 'include',
             });
+            if(res.status === 401){
+                throw new Error("Unauthorized");
+            }
             if (!res.ok) throw new Error('Error creating client');
             const responseData = await res.json();
             const userId = responseData.id;
             router.push(`/clients/new/attributes/${userId}`);
         } catch (error) {
-            console.error(error);
+            setError(error.message)
         }
     }
 
@@ -125,6 +130,11 @@ export default function NewClientForm({ params }) {
             <Button type="button" onClick={() => window.history.back()}>
                 Back
             </Button>
+            {error && (
+                <p className= "mt-4 text-center text-sm text-red-500">
+                    {error}
+                </p>
+            )}
         </div>
     )
 }

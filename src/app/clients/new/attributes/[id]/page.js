@@ -12,10 +12,9 @@ import {
 } from "app/components/ui/card"
 
 const defaultAttributes = [
-  { name: '¿Drives?', value: 'no' },
-  { name: '¿You wear glasses?', value: 'no' },
-  { name: '¿Diabetic?', value: 'no' },
-
+  { name: 'Does he/she drive?', value: 'No' },
+  { name: 'Does he/she wear glasses?', value: 'No' },
+  { name: 'Has he/she been diagnosed with diabetes?', value: 'No' },
 ];
 
 export default function AttributeForm({ params }) {
@@ -56,10 +55,10 @@ export default function AttributeForm({ params }) {
         }),
       });
 
-      if (!res.ok) throw new Error('Error al guardar atributos');
+      if (!res.ok) throw new Error('Error saving attributes');
       router.push(`/detail/${id}`);
     } catch (err) {
-      console.error('Error al guardar atributos', err);
+      console.error('Error saving attributes', err);
     }
   };
 
@@ -80,9 +79,9 @@ export default function AttributeForm({ params }) {
           ))}
         </div>
         <div className="grid gap-2">
-          <Label htmlFor="padeceEnfermedad">¿Do you have any illnesses? Which ones?</Label>
+          <Label htmlFor="condition">¿Do you have any illnesses? Which ones?</Label>
           <Input
-            id="padeceEnfermedad"
+            id="condition"
             placeholder="Ej: hypertension, asthma..."
             value={newAttr.name === '¿Do you have any illnesses? Which ones?' ? newAttr.value : ''}
             onChange={(e) =>
@@ -108,7 +107,7 @@ export default function AttributeForm({ params }) {
             <Label htmlFor="newAttr.name">New attribute</Label>
             <Input
               id="newAttr.name"
-              placeholder="Clave"
+              placeholder="key"
               value={newAttr.name}
               onChange={(e) =>
                 setNewAttr({ name: e.target.value, value: newAttr.value })
@@ -119,7 +118,7 @@ export default function AttributeForm({ params }) {
             <Label htmlFor="newAttr.value">Value</Label>
             <Input
               id="newAttr.value"
-              placeholder="Valor"
+              placeholder="Value"
               value={newAttr.value}
               onChange={(e) =>
                 setNewAttr({ name: newAttr.name, value: e.target.value })

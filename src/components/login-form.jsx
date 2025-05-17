@@ -26,12 +26,13 @@ export function LoginForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
- 
+
     try {
       const res = await fetch("http://localhost:1234/admin/login", {
         method: "POST",
-        headers: { "Content-Type": "application/json",
-         },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ username, password }),
         credentials: "include",
       });
@@ -87,6 +88,11 @@ export function LoginForm({
                 Sign up
               </a>
             </div>
+            {error && (
+              <p className="mt-4 text-center text-sm text-red-500">
+                {error}
+              </p>
+            )}
           </form>
         </CardContent>
       </Card>

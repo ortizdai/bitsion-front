@@ -7,17 +7,21 @@ import { useRouter } from "next/navigation"
 export default function HeaderClient() {
   const [showModal, setShowModal] = useState(false)
   const router = useRouter()
+  const [error, setError] = useState(null);
 
   const handleLogout = async () => {
+    setError(null)
     try {
-      setShowModal(false)
-      await fetch("http://localhost:1234/admin/logout", {
+      const res = await fetch("http://localhost:1234/admin/logout", {
         method: "POST",
         credentials: "include",
       })
+      if (!res.ok) throw new Error("Error logging out")
+      setShowModal(false)
+
       router.push("/")
     } catch (err) {
-      console.error("Error logging out", err)
+      setError(err.message)
     }
   }
 
@@ -57,7 +61,7 @@ export default function HeaderClient() {
             <p className="mb-6">¿Are you sure you want to log out?</p>
             <div className="flex justify-end gap-4">
               <button
-                onClick={() => setShowModal(false)}
+                onClick={() => { setShowModal(false), setError(null) }}
                 className="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400 transition"
               >
                 Cancel
@@ -68,7 +72,13 @@ export default function HeaderClient() {
               >
                 Yes
               </button>
+
             </div>
+            {error && (
+              <p className="mt-4 text-center text-sm text-red-500">
+                {error}
+              </p>
+            )}
           </div>
         </div>
       )}
